@@ -2273,14 +2273,14 @@ IOTHUB_CLIENT_RESULT IoTHubClientCore_LL_SetDeviceTwinCallback(IOTHUB_CLIENT_COR
         if (deviceTwinCallback == NULL)
         {
             /* Codes_SRS_IOTHUBCLIENT_LL_10_006: [ If deviceTwinCallback is NULL, then IoTHubClientCore_LL_SetDeviceTwinCallback shall call the underlying layer's _Unsubscribe function and return IOTHUB_CLIENT_OK.] */
-            handleData->IoTHubTransport_Unsubscribe_DeviceTwin(handleData->transportHandle);
+            handleData->IoTHubTransport_Unsubscribe_DeviceTwin(handleData->deviceHandle);
             handleData->deviceTwinCallback = NULL;
             result = IOTHUB_CLIENT_OK;
         }
         else
         {
             /* Codes_SRS_IOTHUBCLIENT_LL_10_002: [ If deviceTwinCallback is not NULL, then IoTHubClientCore_LL_SetDeviceTwinCallback shall call the underlying layer's _Subscribe function.] */
-            if (handleData->IoTHubTransport_Subscribe_DeviceTwin(handleData->transportHandle) == 0)
+            if (handleData->IoTHubTransport_Subscribe_DeviceTwin(handleData->deviceHandle) == 0)
             {
                 handleData->deviceTwinCallback = deviceTwinCallback;
                 handleData->deviceTwinContextCallback = userContextCallback;
@@ -2321,7 +2321,7 @@ IOTHUB_CLIENT_RESULT IoTHubClientCore_LL_SendReportedState(IOTHUB_CLIENT_CORE_LL
         }
         else
         {
-            if (handleData->IoTHubTransport_Subscribe_DeviceTwin(handleData->transportHandle) != 0)
+            if (handleData->IoTHubTransport_Subscribe_DeviceTwin(handleData->deviceHandle) != 0)
             {
                 LogError("Failure adding device twin data to queue");
                 device_twin_data_destroy(client_data);
@@ -2372,7 +2372,7 @@ IOTHUB_CLIENT_RESULT IoTHubClientCore_LL_SetDeviceMethodCallback(IOTHUB_CLIENT_C
                 /*Codes_SRS_IOTHUBCLIENT_LL_02_019: [If parameter messageCallback is NULL then IoTHubClientCore_LL_SetMessageCallback shall call the underlying layer's _Unsubscribe function and return IOTHUB_CLIENT_OK.] */
                 /*Codes_SRS_IOTHUBCLIENT_LL_12_018: [If deviceMethodCallback is NULL, then IoTHubClientCore_LL_SetDeviceMethodCallback shall call the underlying layer's IoTHubTransport_Unsubscribe_DeviceMethod function and return IOTHUB_CLIENT_OK. ] */
                 /*Codes_SRS_IOTHUBCLIENT_LL_12_022: [ Otherwise IoTHubClientCore_LL_SetDeviceMethodCallback shall succeed and return IOTHUB_CLIENT_OK. ]*/
-                handleData->IoTHubTransport_Unsubscribe_DeviceMethod(handleData->transportHandle);
+                handleData->IoTHubTransport_Unsubscribe_DeviceMethod(handleData->deviceHandle);
                 handleData->methodCallback.type = CALLBACK_TYPE_NONE;
                 handleData->methodCallback.callbackSync = NULL;
                 handleData->methodCallback.userContextCallback = NULL;
@@ -2445,7 +2445,7 @@ IOTHUB_CLIENT_RESULT IoTHubClientCore_LL_SetDeviceMethodCallback_Ex(IOTHUB_CLIEN
             else
             {
                 /* Codes_SRS_IOTHUBCLIENT_LL_07_022: [ If inboundDeviceMethodCallback is NULL then IoTHubClientCore_LL_SetDeviceMethodCallback_Ex shall call the underlying layer's IoTHubTransport_Unsubscribe_DeviceMethod function and return IOTHUB_CLIENT_OK.] */
-                handleData->IoTHubTransport_Unsubscribe_DeviceMethod(handleData->transportHandle);
+                handleData->IoTHubTransport_Unsubscribe_DeviceMethod(handleData->deviceHandle);
                 handleData->methodCallback.type = CALLBACK_TYPE_NONE;
                 handleData->methodCallback.callbackAsync = NULL;
                 handleData->methodCallback.userContextCallback = NULL;
