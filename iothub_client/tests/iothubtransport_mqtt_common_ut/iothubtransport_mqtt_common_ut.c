@@ -1921,7 +1921,7 @@ TEST_FUNCTION(IoTHubTransport_MQTT_Common_Create_validConfig_fail)
         TRANSPORT_LL_HANDLE result = IoTHubTransport_MQTT_Common_Create(&config, get_IO_transport, &transport_cb_info, transport_cb_ctx);
 
         // assert
-        ASSERT_IS_NULL_WITH_MSG(result, tmp_msg);
+        ASSERT_IS_NULL(result, tmp_msg);
     }
 
     // clean up
@@ -6621,7 +6621,7 @@ TEST_FUNCTION(IoTHubTransport_MQTT_Common_Subscribe_DeviceTwin_fail)
         int result = IoTHubTransport_MQTT_Common_Subscribe_DeviceTwin(handle);
 
         // assert
-        ASSERT_ARE_NOT_EQUAL_WITH_MSG(int, 0, result, tmp_msg);
+        ASSERT_ARE_NOT_EQUAL(int, 0, result, tmp_msg);
     }
 
     //cleanup
@@ -6661,7 +6661,7 @@ TEST_FUNCTION(IoTHubTransport_MQTT_Common_Subscribe_DeviceTwin_notify_fail)
 
         int result = IoTHubTransport_MQTT_Common_Subscribe_DeviceTwin(handle);
         // assert
-        ASSERT_ARE_NOT_EQUAL_WITH_MSG(int, result, 0, tmp_msg);
+        ASSERT_ARE_NOT_EQUAL(int, result, 0, tmp_msg);
     }
 
     //cleanup
@@ -7059,7 +7059,7 @@ TEST_FUNCTION(IoTHubTransport_MQTT_Common_ProcessItem_fail)
 
         IOTHUB_PROCESS_ITEM_RESULT result_item = IoTHubTransport_MQTT_Common_ProcessItem(handle, IOTHUB_TYPE_DEVICE_TWIN, &identity_info);
         // assert
-        ASSERT_ARE_NOT_EQUAL_WITH_MSG(int, IOTHUB_PROCESS_OK, result_item, tmp_msg);
+        ASSERT_ARE_NOT_EQUAL(int, IOTHUB_PROCESS_OK, result_item, tmp_msg);
     }
 
     //cleanup
@@ -7186,7 +7186,7 @@ TEST_FUNCTION(IoTHubTransport_MQTT_Common_DeviceMethod_Response_fail)
         int result = IoTHubTransport_MQTT_Common_DeviceMethod_Response(handle, g_method_handle_value, TEST_DEVICE_METHOD_RESPONSE, TEST_DEVICE_RESP_LENGTH, TEST_DEVICE_STATUS_CODE);
 
         // assert
-        ASSERT_ARE_NOT_EQUAL_WITH_MSG(int, 0, result, tmp_msg);
+        ASSERT_ARE_NOT_EQUAL(int, 0, result, tmp_msg);
     }
 
     //cleanup

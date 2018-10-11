@@ -1558,7 +1558,7 @@ TEST_FUNCTION(IoTHubTransportHttp_Create_fails)
         TRANSPORT_LL_HANDLE result = IoTHubTransportHttp_Create(&TEST_CONFIG, &transport_cb_info, transport_cb_ctx);
 
         //assert
-        ASSERT_IS_NULL_WITH_MSG(result, tmp_msg);
+        ASSERT_IS_NULL(result, tmp_msg);
     }
 
     //cleanup
@@ -1807,7 +1807,7 @@ TEST_FUNCTION(IoTHubTransportHttp_Register_HappyPath_with_deviceKey_fail)
         IOTHUB_DEVICE_HANDLE devHandle = IoTHubTransportHttp_Register(handle, &TEST_DEVICE_1, TEST_CONFIG.waitingToSend);
 
         //assert
-        ASSERT_IS_NULL_WITH_MSG(devHandle, tmp_msg);
+        ASSERT_IS_NULL(devHandle, tmp_msg);
     }
 
     //cleanup
